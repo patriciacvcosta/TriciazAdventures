@@ -71,6 +71,7 @@ namespace TriciazAdventures
             aboutScene = new AboutScene(this, spriteBatch);
             this.Components.Add(aboutScene);
 
+
             startScene.ShowScene();
 
 

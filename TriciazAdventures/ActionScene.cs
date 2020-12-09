@@ -13,10 +13,14 @@ namespace TriciazAdventures
     public class ActionScene : GameScene
     {
         private SpriteBatch spriteBatch;
-        private TriciazAnimation triciaz;
+        private TriciazCharacter triciaz;
+        private BluebleCharacter blueble;
         private ScrollingBackground scrollingBackground;
+        private Collision charsCollision;
         private Song gameSound;
         public Song GameSound { get => gameSound; set => gameSound = value; }
+
+        private const float GRAVITY = 28;
 
         public ActionScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
@@ -33,12 +37,21 @@ namespace TriciazAdventures
             Texture2D triciaTex = game.Content.Load<Texture2D>("Images/Characters/Triciaz2.2");
             Vector2 triciaXSpeed = new Vector2(4, 0);
             Vector2 triciaYSpeed = new Vector2(0, 0);
-            Vector2 gravity = new Vector2(0, 25);
+            Vector2 gravity = new Vector2(0, GRAVITY);
 
-            triciaz = new TriciazAnimation(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity, 1);
+            triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity);
+
+            Texture2D bluebleTex = game.Content.Load<Texture2D>("Images/Characters/blueble");
+            Vector2 bluebleXSpeed = new Vector2(8, 0);
+            blueble = new BluebleCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);
+
+            charsCollision = new Collision(game, triciaz, blueble);
 
             this.Scenes.Add(scrollingBackground);
             this.Scenes.Add(triciaz);
+            this.Scenes.Add(blueble);
+            this.Scenes.Add(charsCollision);
+
 
         }
 

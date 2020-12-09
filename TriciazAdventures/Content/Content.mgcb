@@ -94,7 +94,7 @@
 /processorParam:TextureFormat=Color
 /build:Images/Backgrounds/mainscreen.png
 
-#begin Images/Characters/drop.png
+#begin Images/Characters/blueble.png
 /importer:TextureImporter
 /processor:TextureProcessor
 /processorParam:ColorKeyColor=255,0,255,255
@@ -104,19 +104,7 @@
 /processorParam:ResizeToPowerOfTwo=False
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
-/build:Images/Characters/drop.png
-
-#begin Images/Characters/flyingdrop2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/Characters/flyingdrop2.png
+/build:Images/Characters/blueble.png
 
 #begin Images/Characters/Triciaz2.2.png
 /importer:TextureImporter
@@ -141,18 +129,6 @@
 /processorParam:MakeSquare=False
 /processorParam:TextureFormat=Color
 /build:Images/Characters/Triciaz2.png
-
-#begin Images/Characters/troll2.png
-/importer:TextureImporter
-/processor:TextureProcessor
-/processorParam:ColorKeyColor=255,0,255,255
-/processorParam:ColorKeyEnabled=True
-/processorParam:GenerateMipmaps=False
-/processorParam:PremultiplyAlpha=True
-/processorParam:ResizeToPowerOfTwo=False
-/processorParam:MakeSquare=False
-/processorParam:TextureFormat=Color
-/build:Images/Characters/troll2.png
 
 #begin Images/GameRun/helpImage.png
 /importer:TextureImporter
