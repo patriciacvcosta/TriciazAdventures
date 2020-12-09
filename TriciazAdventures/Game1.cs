@@ -12,6 +12,10 @@ namespace TriciazAdventures
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        TriciazAnimation triciaz;
+
+        private ActionScene actionScene;
+
         public Game1()
         {
             graphics = new GraphicsDeviceManager(this);
@@ -48,16 +52,30 @@ namespace TriciazAdventures
 
             // TODO: use this.Content to load your game content here
 
-            Texture2D tex = this.Content.Load<Texture2D>("Images/Backgrounds/floresta2.2");
-            Vector2 stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+            //Vector2 stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
 
-            Rectangle srcRect = new Rectangle(0, 0, tex.Width, tex.Height);
-            Vector2 pos = new Vector2(0, stage.Y - srcRect.Height);
-            Vector2 speed = new Vector2(2, 0);
+            //Texture2D tex = this.Content.Load<Texture2D>("Images/Backgrounds/floresta2.2");
+            //Rectangle srcRect = new Rectangle(0, 0, tex.Width, tex.Height);
+            //Vector2 pos = new Vector2(0, stage.Y - srcRect.Height);
+            //Vector2 speed = new Vector2(2, 0);
 
-            ScrollingBackground sb = new ScrollingBackground(this, spriteBatch, tex, pos, srcRect, speed);
+            //ScrollingBackground sb = new ScrollingBackground(this, spriteBatch, tex, pos, srcRect, speed);
 
-            this.Components.Add(sb);
+            //Texture2D triciaTex = this.Content.Load<Texture2D>("Images/Characters/Triciaz2.2");
+            //Vector2 triciaXSpeed = new Vector2(4, 0);
+            //Vector2 triciaYSpeed = new Vector2(0, 4);
+
+            //triciaz = new TriciazAnimation(this, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, stage, 1);
+
+
+            //this.Components.Add(sb);
+            //this.Components.Add(triciaz);
+
+            actionScene = new ActionScene(this, spriteBatch);
+            this.Components.Add(actionScene);
+
+            actionScene.ShowScene();
+
 
         }
 
