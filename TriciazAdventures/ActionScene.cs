@@ -17,7 +17,6 @@ namespace TriciazAdventures
         private ScrollingBackground scrollingBackground;
         private Song gameSound;
         public Song GameSound { get => gameSound; set => gameSound = value; }
-        //GraphicsDeviceManager graphics;
 
         public ActionScene(Game game, SpriteBatch spriteBatch) : base(game)
         {
@@ -30,21 +29,19 @@ namespace TriciazAdventures
             GameSound = game.Content.Load<Song>("Sounds/trilha_jogo");
 
             scrollingBackground = new ScrollingBackground(game, spriteBatch, backGroundTex, pos, srcRect, speed, GameSound);
-            
+
             Texture2D triciaTex = game.Content.Load<Texture2D>("Images/Characters/Triciaz2.2");
             Vector2 triciaXSpeed = new Vector2(4, 0);
-            Vector2 triciaYSpeed = new Vector2(0, 4);
+            Vector2 triciaYSpeed = new Vector2(0, 0);
+            Vector2 gravity = new Vector2(0, 25);
 
-            triciaz = new TriciazAnimation(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, 1);
+            triciaz = new TriciazAnimation(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity, 1);
 
             this.Scenes.Add(scrollingBackground);
             this.Scenes.Add(triciaz);
 
         }
 
-
-
-        //override show method to make sure the bat will be t the start point everytime the game is started
 
     }
 }

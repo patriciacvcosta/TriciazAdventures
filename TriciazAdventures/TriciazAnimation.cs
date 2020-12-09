@@ -13,10 +13,11 @@ namespace TriciazAdventures
     {
         private SpriteBatch spriteBatch;
         private Texture2D tex;
+
         private Vector2 initPosition;
         private Vector2 xSpeed;
-        private Vector2 ySpeed;
-        //private Vector2 stage;
+        private Vector2 jumpingSpeed;
+        private Vector2 gravity;
         private Vector2 frameDimension;
         private List<Rectangle> frames;
         private int frameIndex = 0;
@@ -24,19 +25,26 @@ namespace TriciazAdventures
         private int framingSpeedCounter;
         private const int ROW = 4;
         private const int COL = 4;
+        
+        private const float INCREMENT_SPEED = 1;
 
-        //public Vector2 InitPosition { get => initPosition; set => initPosition = value; }
+        float startY = 0;
+        bool isJumping;
+        KeyboardState ks;
 
-        public TriciazAnimation(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, Vector2 yspeed, int framingSpeed) : base(game)
+        public TriciazAnimation(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, Vector2 jumpingSpeed, Vector2 gravity, int framingSpeed) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.tex = tex;
             initPosition = new Vector2(Shared.stage.X / 2 - 1150 / 2, Shared.stage.Y - 160);
             this.xSpeed = xspeed;
-            this.ySpeed = yspeed;
-            //this.stage = stage;
+            this.jumpingSpeed = jumpingSpeed;
+            this.gravity = gravity;
             this.framingSpeed = framingSpeed;
-            frameDimension = new Vector2(tex.Width / COL, tex.Height / ROW);
+
+            frameDimension = new Vector2(tex.Width / COL, tex.Height / ROW);            
+            startY = initPosition.Y;
+            isJumping = false;
 
             StartFrame();
             GenerateFrames();
@@ -70,7 +78,7 @@ namespace TriciazAdventures
             if (frameIndex >= 0)
             {
                 spriteBatch.Begin();
-                
+
                 spriteBatch.Draw(tex, initPosition, frames[frameIndex], Color.White);
                 spriteBatch.End();
 
@@ -84,8 +92,20 @@ namespace TriciazAdventures
         {
             UpdateFrames();
             MoveHorizontal();
-            MoveVertical();
+
+            ks = Keyboard.GetState();
+
+            if (isJumping)
+            {
+                MoveUp();
+            }
+            else
+            {
+                ApplyGravity();
+            }           
+
             base.Update(gameTime);
+            
         }
 
         private void UpdateFrames()
@@ -121,35 +141,33 @@ namespace TriciazAdventures
             {
                 initPosition += xSpeed;
 
-                if (initPosition.X > Shared.stage.X - tex.Width/COL)
+                if (initPosition.X > Shared.stage.X - tex.Width / COL)
                 {
                     initPosition.X = Shared.stage.X - tex.Width / COL;
                 }
             }
         }
-        private void MoveVertical()
+        private void MoveUp()
         {
-            KeyboardState ks = Keyboard.GetState();
+            initPosition += jumpingSpeed;
+            jumpingSpeed.Y += INCREMENT_SPEED;
 
-            if (ks.IsKeyDown(Keys.Up))
+            if (initPosition.Y >= startY)
             {
-                initPosition -= ySpeed;
-
-                if (initPosition.Y < Shared.stage.Y - frameDimension .Y* 2)
-                {
-                    initPosition.Y = Shared.stage.Y - frameDimension.Y;
-                }
+                initPosition.Y = startY;
+                isJumping = false;
 
             }
-            //if (ks.IsKeyDown(Keys.Right))
-            //{
-            //    initPosition += speed;
+        }
 
-            //    if (initPosition.X > stage.X - tex.Width / COL)
-            //    {
-            //        initPosition.X = stage.X - tex.Width / COL;
-            //    }
-            //}
+        private void ApplyGravity()
+        {
+            if (ks.IsKeyDown(Keys.Up))
+            {
+                isJumping = true;
+                jumpingSpeed -= gravity;
+            }
+
         }
     }
 }
