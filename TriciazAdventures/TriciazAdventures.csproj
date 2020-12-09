@@ -41,8 +41,13 @@
     <ApplicationManifest>app.manifest</ApplicationManifest>
   </PropertyGroup>
   <ItemGroup>
+    <Compile Include="AboutScene.cs" />
     <Compile Include="ActionScene.cs" />
     <Compile Include="GameScene.cs" />
+    <Compile Include="HowToPlayScene.cs" />
+    <Compile Include="MenuComponent.cs" />
+    <Compile Include="Shared.cs" />
+    <Compile Include="StartScene.cs" />
     <Compile Include="TriciazAnimation.cs" />
     <Compile Include="Game1.cs" />
     <Compile Include="Program.cs" />

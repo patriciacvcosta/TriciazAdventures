@@ -6,6 +6,7 @@ using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace TriciazAdventures
 {
@@ -17,7 +18,7 @@ namespace TriciazAdventures
         private Vector2 position1, position2;
         private Vector2 speed;
 
-        public ScrollingBackground(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 position, Rectangle srcRect, Vector2 speed) : base(game)
+        public ScrollingBackground(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 position, Rectangle srcRect, Vector2 speed, Song gameSound) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.tex = tex;

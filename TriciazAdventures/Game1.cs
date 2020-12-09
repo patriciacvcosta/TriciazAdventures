@@ -1,6 +1,8 @@
 ﻿using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace TriciazAdventures
 {
@@ -12,9 +14,12 @@ namespace TriciazAdventures
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
-        TriciazAnimation triciaz;
+        //TriciazAnimation triciaz;
 
+        private StartScene startScene;
         private ActionScene actionScene;
+        private HowToPlayScene howToPlayScene;
+        private AboutScene aboutScene;
 
         public Game1()
         {
@@ -38,6 +43,8 @@ namespace TriciazAdventures
         {
             // TODO: Add your initialization logic here
 
+            Shared.stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
+
             base.Initialize();
         }
 
@@ -52,29 +59,19 @@ namespace TriciazAdventures
 
             // TODO: use this.Content to load your game content here
 
-            //Vector2 stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
-            //Texture2D tex = this.Content.Load<Texture2D>("Images/Backgrounds/floresta2.2");
-            //Rectangle srcRect = new Rectangle(0, 0, tex.Width, tex.Height);
-            //Vector2 pos = new Vector2(0, stage.Y - srcRect.Height);
-            //Vector2 speed = new Vector2(2, 0);
-
-            //ScrollingBackground sb = new ScrollingBackground(this, spriteBatch, tex, pos, srcRect, speed);
-
-            //Texture2D triciaTex = this.Content.Load<Texture2D>("Images/Characters/Triciaz2.2");
-            //Vector2 triciaXSpeed = new Vector2(4, 0);
-            //Vector2 triciaYSpeed = new Vector2(0, 4);
-
-            //triciaz = new TriciazAnimation(this, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, stage, 1);
-
-
-            //this.Components.Add(sb);
-            //this.Components.Add(triciaz);
+            startScene = new StartScene(this, spriteBatch);
+            this.Components.Add(startScene);
 
             actionScene = new ActionScene(this, spriteBatch);
             this.Components.Add(actionScene);
 
-            actionScene.ShowScene();
+            howToPlayScene = new HowToPlayScene(this, spriteBatch);
+            this.Components.Add(howToPlayScene);
+
+            aboutScene = new AboutScene(this, spriteBatch);
+            this.Components.Add(aboutScene);
+
+            startScene.ShowScene();
 
 
         }
@@ -95,10 +92,80 @@ namespace TriciazAdventures
         /// <param name="gameTime">Provides a snapshot of timing values.</param>
         protected override void Update(GameTime gameTime)
         {
-            if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
-                Exit();
+            //if (GamePad.GetState(PlayerIndex.One).Buttons.Back == ButtonState.Pressed || Keyboard.GetState().IsKeyDown(Keys.Escape))
+            //    Exit();
 
             // TODO: Add your update logic here
+
+            int selectedIndex = 0;
+
+            KeyboardState ks = Keyboard.GetState();
+
+            if (startScene.Enabled)
+            {
+
+                MediaPlayer.Stop();
+                selectedIndex = startScene.Menu.SelectedIndex;
+                if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
+                {
+                    startScene.HideScene();
+                    actionScene.ShowScene();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(actionScene.GameSound);
+                }
+                if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
+                {
+                    startScene.HideScene();
+                    howToPlayScene.ShowScene();
+                }
+                //if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
+                //{
+                //    startScene.HideScene();
+                //    highestScoreScene.ShowScene();
+                //}
+                if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
+                {
+                    aboutScene.HideScene();
+                    aboutScene.ShowScene();
+                }
+                if (selectedIndex == 4 && ks.IsKeyDown(Keys.Enter))
+                {
+                    Exit();
+                }
+            }
+            if (actionScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    actionScene.HideScene();
+                    startScene.ShowScene();
+                }
+            }
+            if (howToPlayScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    howToPlayScene.HideScene();
+                    startScene.ShowScene();
+                }
+            }
+            if (aboutScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    aboutScene.HideScene();
+                    startScene.ShowScene();
+                }
+            }
+            //if (highestScoreScene.Enabled)
+            //{
+            //    if (ks.IsKeyDown(Keys.Escape))
+            //    {
+            //        highestScoreScene.HideScene();
+            //        startScene.ShowScene();
+            //    }
+            //}
+
 
             base.Update(gameTime);
         }
