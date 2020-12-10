@@ -15,11 +15,14 @@ namespace TriciazAdventures
         private TriciazCharacter triciaz;
         private BluebleCharacter blueble;
         //private SoundEffect hitSound;
-
+        private Texture2D tex;
 
         Vector2 initSpeed;
+        Vector2 initPosition;
 
-        Color initTriciazColor;
+        //Color[] regTriciazColor;
+        //Color collidedColor;
+        //Color initTriciazColor;
 
         public Collision(Game game, TriciazCharacter triciaz, BluebleCharacter blueble) : base(game)
         {
@@ -28,19 +31,37 @@ namespace TriciazAdventures
             //this.hitSound = hitSound;
 
             initSpeed = triciaz.XSpeed;
-            initTriciazColor = triciaz.Color;
+            initPosition = triciaz.Position;
+            //this.collidedColor = new Color(0.5f, 0.5f, 0.5f, 1f);
+
+            //tex = triciaz.Tex;
+            //regTriciazColor = new Color[tex.Width * tex.Height];
+            //tex.GetData(regTriciazColor);
+
+            //collidedColor = Color.Red;
+            //initTriciazColor = triciaz.TriciazColor;
         }
 
         public override void Update(GameTime gameTime)
         {
             Rectangle triciazRect = triciaz.GetCharBoundary();
             Rectangle bluebleRect = blueble.GetCharBoundary();
-            Vector2 decreasedSpeed = new Vector2(0,0);
+            Vector2 decreasedSpeed = new Vector2(-1,0);
+            Vector2 collided = new Vector2(-2, 0);
 
             if (triciazRect.Intersects(bluebleRect))
             {
                 triciaz.XSpeed = decreasedSpeed;
-                //triciaz.Color = Color.Coral;
+                triciaz.Position += collided;
+
+                //for (int i = 0; i < regTriciazColor.Length; i++)
+                //{
+                //    if (regTriciazColor[i] == initTriciazColor)
+                //        regTriciazColor[i] = collidedColor;
+                //}
+
+                //regTriciazColor[4 * tex.Width + 3] = Color.Red;
+                //tex.SetData(regTriciazColor);
 
                 //ball.Speed = new Vector2(ball.Speed.X, -ball.Speed.Y);
                 //hitSound.Play();
@@ -48,6 +69,7 @@ namespace TriciazAdventures
             else
             {
                 triciaz.XSpeed = initSpeed;
+                //triciaz.Position = initPosition;
                 //triciaz.Color = initTriciazColor;
 
             }

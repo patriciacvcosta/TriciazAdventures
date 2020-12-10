@@ -18,24 +18,28 @@ namespace TriciazAdventures
         private const float INCREMENT_YSPEED = 1;
         private Vector2 jumpingSpeed;
         private Vector2 gravity;
-        private Color color;
+
+        //private Color[] colorData;
+        //private Color triciazColor;
 
         float startY = 0;
         bool isJumping;
         KeyboardState ks;
 
-        public Color Color { get => color; set => color = value; }
+        //public Color[] ColorData { get => colorData; set => colorData = value; }
+        //public Color TriciazColor { get => triciazColor; set => triciazColor = value; }
 
         public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, Vector2 jumpingSpeed, Vector2 gravity) 
             : base(game, spriteBatch, tex, xspeed, ROW, COL, FRAMING_SPEED)
         {
-            initPosition = new Vector2(frameDimension.X, Shared.stage.Y - frameDimension.Y);
+            position = new Vector2(frameDimension.X, Shared.stage.Y - frameDimension.Y);
             this.jumpingSpeed = jumpingSpeed;
             this.gravity = gravity;
-     
-            startY = initPosition.Y;
+            startY = position.Y;
             isJumping = false;
 
+
+            //triciazColor = Color.White;
         }
 
         
@@ -67,32 +71,32 @@ namespace TriciazAdventures
 
             if (ks.IsKeyDown(Keys.Left))
             {
-                initPosition -= xSpeed;
+                position -= xSpeed;
 
-                if (initPosition.X < 0)
+                if (position.X < 0)
                 {
-                    initPosition.X = 0;
+                    position.X = 0;
                 }
 
             }
             if (ks.IsKeyDown(Keys.Right))
             {
-                initPosition += xSpeed;
+                position += xSpeed;
 
-                if (initPosition.X > Shared.stage.X - tex.Width / COL)
+                if (position.X > Shared.stage.X - tex.Width / COL)
                 {
-                    initPosition.X = Shared.stage.X - tex.Width / COL;
+                    position.X = Shared.stage.X - tex.Width / COL;
                 }
             }
         }
         private void MoveUp()
         {
-            initPosition += jumpingSpeed;
+            position += jumpingSpeed;
             jumpingSpeed.Y += INCREMENT_YSPEED;
 
-            if (initPosition.Y >= startY)
+            if (position.Y >= startY)
             {
-                initPosition.Y = startY;
+                position.Y = startY;
                 isJumping = false;
 
             }

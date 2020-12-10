@@ -23,7 +23,7 @@ namespace TriciazAdventures
         public BluebleCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed) 
             : base(game, spriteBatch, tex, xspeed, ROW, COL, FRAMING_SPEED)
         {
-            initPosition = new Vector2(Shared.stage.X - frameDimension.X, Shared.stage.Y - frameDimension.Y);
+            position = new Vector2(Shared.stage.X - frameDimension.X, Shared.stage.Y - frameDimension.Y);
 
             random = new Random();
         }
@@ -36,11 +36,11 @@ namespace TriciazAdventures
         public override void Update(GameTime gameTime)
         {
             speed = random.Next(MIN_XSPEED, MAX_XSPEED);
-            initPosition.X -= speed;
+            position.X -= speed;
 
-            if (initPosition.X < 0)
+            if (position.X < 0)
             {
-                initPosition.X = Shared.stage.X;
+                position.X = Shared.stage.X;
             }
 
             base.Update(gameTime);

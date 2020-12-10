@@ -14,7 +14,7 @@ namespace TriciazAdventures
         protected SpriteBatch spriteBatch;
         protected Texture2D tex;
 
-        protected Vector2 initPosition;
+        protected Vector2 position;
         protected Vector2 xSpeed;
         protected Vector2 frameDimension;
         protected List<Rectangle> frames;
@@ -25,6 +25,8 @@ namespace TriciazAdventures
         protected int col;
 
         public Vector2 XSpeed { get => xSpeed; set => xSpeed = value; }
+        public Vector2 Position { get => position; set => position = value; }
+        //public Texture2D Tex { get => tex; set => tex = value; }
 
         public Character(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, int rows, int cols, int framingSpeed) : base(game)
         {
@@ -47,7 +49,7 @@ namespace TriciazAdventures
             {
                 spriteBatch.Begin();
 
-                spriteBatch.Draw(tex, initPosition, frames[frameIndex], Color.White);
+                spriteBatch.Draw(tex, position, frames[frameIndex], Color.White);
                 spriteBatch.End();
 
             }
@@ -101,7 +103,7 @@ namespace TriciazAdventures
         }
         public Rectangle GetCharBoundary()
         {
-            return new Rectangle((int)initPosition.X, (int)initPosition.Y, (int)frameDimension.X, (int)frameDimension.Y);
+            return new Rectangle((int)position.X, (int)position.Y, (int)frameDimension.X, (int)frameDimension.Y);
         }
 
     }
