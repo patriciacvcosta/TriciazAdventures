@@ -10,20 +10,18 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TriciazAdventures
 {
-    class Collision : GameComponent
+    public class Collision : GameComponent
     {
         private TriciazCharacter triciaz;
         private BluebleCharacter blueble;
         private SoundEffect damageSound;
-        private Texture2D tex;
 
         Vector2 initSpeed;
         Vector2 initPosition;
-        bool isColliding;
-
-        //Color[] regTriciazColor;
-        //Color collidedColor;
-        //Color initTriciazColor;
+        private bool isColliding;
+        private int reduceLife;
+        public bool IsColliding { get => isColliding; set => isColliding = value; }
+        public int ReduceLife { get => reduceLife; set => reduceLife = value; }
 
         public Collision(Game game, TriciazCharacter triciaz, BluebleCharacter blueble, SoundEffect damageSound) : base(game)
         {
@@ -34,15 +32,8 @@ namespace TriciazAdventures
             initSpeed = triciaz.XSpeed;
             initPosition = triciaz.Position;
             isColliding = false;
-            //this.collidedColor = new Color(0.5f, 0.5f, 0.5f, 1f);
-
-            //tex = triciaz.Tex;
-            //regTriciazColor = new Color[tex.Width * tex.Height];
-            //tex.GetData(regTriciazColor);
-
-            //collidedColor = Color.Red;
-            //initTriciazColor = triciaz.TriciazColor;
         }
+
 
         public override void Update(GameTime gameTime)
         {
@@ -56,17 +47,8 @@ namespace TriciazAdventures
                 triciaz.XSpeed = decreasedSpeed;
                 triciaz.Position -= collided;
                 damageSound.Play();
+                reduceLife++;
                 isColliding = true;
-                //for (int i = 0; i < regTriciazColor.Length; i++)
-                //{
-                //    if (regTriciazColor[i] == initTriciazColor)
-                //        regTriciazColor[i] = collidedColor;
-                //}
-
-                //regTriciazColor[4 * tex.Width + 3] = Color.Red;
-                //tex.SetData(regTriciazColor);
-
-                //ball.Speed = new Vector2(ball.Speed.X, -ball.Speed.Y);
 
 
             }

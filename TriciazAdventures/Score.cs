@@ -18,11 +18,7 @@ namespace TriciazAdventures
         private Vector2 position;
         private Color textColor;
 
-        public SpriteFont Font { get => font; set => font = value; }
         public string ScoreMsg { get => scoreMsg; set => scoreMsg = value; }
-        public Vector2 Position { get => position; set => position = value; }
-        public Color TextColor { get => textColor; set => textColor = value; }
-
 
         public Score(Game game, SpriteBatch spriteBatch, SpriteFont font, Vector2 position, string scoreMsg, Color textColor) : base(game)
         {

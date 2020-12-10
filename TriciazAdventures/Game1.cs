@@ -46,7 +46,7 @@ namespace TriciazAdventures
             // TODO: Add your initialization logic here
 
             Shared.stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-            gameTheme = this.Content.Load<Song>("Sounds/staticscenessound");
+            gameTheme = this.Content.Load<Song>("Sounds/staticscenessound2");
             base.Initialize();
         }
 

@@ -227,23 +227,23 @@
 /processorParam:Quality=Best
 /build:Sounds/damage.wav
 
-#begin Sounds/jump.wav
+#begin Sounds/jump3.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/jump.wav
+/build:Sounds/jump3.wav
 
-#begin Sounds/jump2.wav
+#begin Sounds/jump4.wav
 /importer:WavImporter
 /processor:SoundEffectProcessor
 /processorParam:Quality=Best
-/build:Sounds/jump2.wav
+/build:Sounds/jump4.wav
 
-#begin Sounds/staticscenessound.mp3
+#begin Sounds/staticscenessound2.mp3
 /importer:Mp3Importer
 /processor:SongProcessor
 /processorParam:Quality=Best
-/build:Sounds/staticscenessound.mp3
+/build:Sounds/staticscenessound2.mp3
 
 #begin Sounds/trilha_jogo.mp3
 /importer:Mp3Importer

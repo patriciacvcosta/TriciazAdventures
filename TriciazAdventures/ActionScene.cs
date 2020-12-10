@@ -19,6 +19,7 @@ namespace TriciazAdventures
         private ScrollingBackground scrollingBackground;
         private Collision charsCollision;
         private Score score;
+        private Life life;
         private Song gameSound;
         public Song GameSound { get => gameSound; set => gameSound = value; }
 
@@ -40,7 +41,7 @@ namespace TriciazAdventures
             Vector2 triciaXSpeed = new Vector2(4, 0);
             Vector2 triciaYSpeed = new Vector2(0, 0);
             Vector2 gravity = new Vector2(0, GRAVITY);
-            SoundEffect jumpSound = game.Content.Load<SoundEffect>("Sounds/jump");
+            SoundEffect jumpSound = game.Content.Load<SoundEffect>("Sounds/jump3");
 
             triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity, jumpSound);
 
@@ -55,11 +56,15 @@ namespace TriciazAdventures
             score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), "", Color.Cornsilk);
 
 
+            Texture2D heart = game.Content.Load<Texture2D>("Images/GameRun/life");
+            life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision);
+
             this.Scenes.Add(scrollingBackground);
             this.Scenes.Add(triciaz);
             this.Scenes.Add(blueble);
             this.Scenes.Add(charsCollision);
             this.Scenes.Add(score);
+            this.Scenes.Add(life);
 
 
         }
@@ -68,6 +73,11 @@ namespace TriciazAdventures
         {
             score.ScoreMsg = "[" + Math.Round(gameTime.TotalGameTime.TotalSeconds, 2) + "]";
             base.Update(gameTime);
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            base.Draw(gameTime);
         }
     }
 }

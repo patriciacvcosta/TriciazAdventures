@@ -9,7 +9,7 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TriciazAdventures
 {
-    class BluebleCharacter : Character
+    public class BluebleCharacter : Character
     {
         protected const int ROW = 7;
         protected const int COL = 4;
