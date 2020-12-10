@@ -14,6 +14,8 @@ namespace TriciazAdventures
         GraphicsDeviceManager graphics;
         SpriteBatch spriteBatch;
 
+        Song gameTheme;
+        bool isGameThemePlaying = false;
         //TriciazAnimation triciaz;
 
         private StartScene startScene;
@@ -44,7 +46,7 @@ namespace TriciazAdventures
             // TODO: Add your initialization logic here
 
             Shared.stage = new Vector2(graphics.PreferredBackBufferWidth, graphics.PreferredBackBufferHeight);
-
+            gameTheme = this.Content.Load<Song>("Sounds/staticscenessound");
             base.Initialize();
         }
 
@@ -71,6 +73,7 @@ namespace TriciazAdventures
             aboutScene = new AboutScene(this, spriteBatch);
             this.Components.Add(aboutScene);
 
+            
 
             startScene.ShowScene();
 
@@ -102,13 +105,21 @@ namespace TriciazAdventures
 
             KeyboardState ks = Keyboard.GetState();
 
+            //MediaPlayer.Stop();
+            
+
             if (startScene.Enabled)
             {
-
-                MediaPlayer.Stop();
+                if (!isGameThemePlaying)
+                {
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(gameTheme);
+                    isGameThemePlaying = true;
+                }
                 selectedIndex = startScene.Menu.SelectedIndex;
                 if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
                 {
+                    isGameThemePlaying = false;
                     startScene.HideScene();
                     actionScene.ShowScene();
                     MediaPlayer.IsRepeating = true;
@@ -118,6 +129,7 @@ namespace TriciazAdventures
                 {
                     startScene.HideScene();
                     howToPlayScene.ShowScene();
+
                 }
                 //if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
                 //{
@@ -140,6 +152,7 @@ namespace TriciazAdventures
                 {
                     actionScene.HideScene();
                     startScene.ShowScene();
+                    MediaPlayer.Play(gameTheme);
                 }
             }
             if (howToPlayScene.Enabled)

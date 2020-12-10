@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
@@ -17,6 +18,7 @@ namespace TriciazAdventures
         private BluebleCharacter blueble;
         private ScrollingBackground scrollingBackground;
         private Collision charsCollision;
+        private Score score;
         private Song gameSound;
         public Song GameSound { get => gameSound; set => gameSound = value; }
 
@@ -38,23 +40,34 @@ namespace TriciazAdventures
             Vector2 triciaXSpeed = new Vector2(4, 0);
             Vector2 triciaYSpeed = new Vector2(0, 0);
             Vector2 gravity = new Vector2(0, GRAVITY);
+            SoundEffect jumpSound = game.Content.Load<SoundEffect>("Sounds/jump");
 
-            triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity);
+            triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity, jumpSound);
 
             Texture2D bluebleTex = game.Content.Load<Texture2D>("Images/Characters/blueble");
             Vector2 bluebleXSpeed = new Vector2(8, 0);
             blueble = new BluebleCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);
 
-            charsCollision = new Collision(game, triciaz, blueble);
+            SoundEffect damageSound = game.Content.Load<SoundEffect>("Sounds/damage");
+            charsCollision = new Collision(game, triciaz, blueble, damageSound);
+
+            SpriteFont font = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
+            score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), "", Color.Cornsilk);
+
 
             this.Scenes.Add(scrollingBackground);
             this.Scenes.Add(triciaz);
             this.Scenes.Add(blueble);
             this.Scenes.Add(charsCollision);
+            this.Scenes.Add(score);
 
 
         }
 
-
+        public override void Update(GameTime gameTime)
+        {
+            score.ScoreMsg = "[" + Math.Round(gameTime.TotalGameTime.TotalSeconds, 2) + "]";
+            base.Update(gameTime);
+        }
     }
 }

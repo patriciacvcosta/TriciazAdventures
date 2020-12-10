@@ -4,6 +4,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 
@@ -18,6 +19,7 @@ namespace TriciazAdventures
         private const float INCREMENT_YSPEED = 1;
         private Vector2 jumpingSpeed;
         private Vector2 gravity;
+        private SoundEffect jumpSound;
 
         //private Color[] colorData;
         //private Color triciazColor;
@@ -29,7 +31,7 @@ namespace TriciazAdventures
         //public Color[] ColorData { get => colorData; set => colorData = value; }
         //public Color TriciazColor { get => triciazColor; set => triciazColor = value; }
 
-        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, Vector2 jumpingSpeed, Vector2 gravity) 
+        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, Vector2 jumpingSpeed, Vector2 gravity, SoundEffect jumpSound) 
             : base(game, spriteBatch, tex, xspeed, ROW, COL, FRAMING_SPEED)
         {
             position = new Vector2(frameDimension.X, Shared.stage.Y - frameDimension.Y);
@@ -37,6 +39,7 @@ namespace TriciazAdventures
             this.gravity = gravity;
             startY = position.Y;
             isJumping = false;
+            this.jumpSound = jumpSound;
 
 
             //triciazColor = Color.White;
@@ -53,11 +56,11 @@ namespace TriciazAdventures
 
             if (isJumping)
             {
-                MoveUp();
+                GoDown();
             }
             else
             {
-                ApplyGravity();
+                Jump();
             }           
 
             base.Update(gameTime);
@@ -89,7 +92,7 @@ namespace TriciazAdventures
                 }
             }
         }
-        private void MoveUp()
+        private void GoDown()
         {
             position += jumpingSpeed;
             jumpingSpeed.Y += INCREMENT_YSPEED;
@@ -102,12 +105,13 @@ namespace TriciazAdventures
             }
         }
 
-        private void ApplyGravity()
+        private void Jump()
         {
             if (ks.IsKeyDown(Keys.Up))
             {
                 isJumping = true;
                 jumpingSpeed -= gravity;
+                jumpSound.Play();
             }
 
         }

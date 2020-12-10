@@ -14,24 +14,26 @@ namespace TriciazAdventures
     {
         private TriciazCharacter triciaz;
         private BluebleCharacter blueble;
-        //private SoundEffect hitSound;
+        private SoundEffect damageSound;
         private Texture2D tex;
 
         Vector2 initSpeed;
         Vector2 initPosition;
+        bool isColliding;
 
         //Color[] regTriciazColor;
         //Color collidedColor;
         //Color initTriciazColor;
 
-        public Collision(Game game, TriciazCharacter triciaz, BluebleCharacter blueble) : base(game)
+        public Collision(Game game, TriciazCharacter triciaz, BluebleCharacter blueble, SoundEffect damageSound) : base(game)
         {
             this.triciaz = triciaz;
             this.blueble = blueble;
-            //this.hitSound = hitSound;
+            this.damageSound = damageSound;
 
             initSpeed = triciaz.XSpeed;
             initPosition = triciaz.Position;
+            isColliding = false;
             //this.collidedColor = new Color(0.5f, 0.5f, 0.5f, 1f);
 
             //tex = triciaz.Tex;
@@ -46,14 +48,15 @@ namespace TriciazAdventures
         {
             Rectangle triciazRect = triciaz.GetCharBoundary();
             Rectangle bluebleRect = blueble.GetCharBoundary();
-            Vector2 decreasedSpeed = new Vector2(-1,0);
-            Vector2 collided = new Vector2(-2, 0);
+            Vector2 decreasedSpeed = new Vector2(1, 0);
+            Vector2 collided = new Vector2(2, 0);
 
-            if (triciazRect.Intersects(bluebleRect))
+            if (triciazRect.Intersects(bluebleRect) && !isColliding)
             {
                 triciaz.XSpeed = decreasedSpeed;
-                triciaz.Position += collided;
-
+                triciaz.Position -= collided;
+                damageSound.Play();
+                isColliding = true;
                 //for (int i = 0; i < regTriciazColor.Length; i++)
                 //{
                 //    if (regTriciazColor[i] == initTriciazColor)
@@ -64,14 +67,18 @@ namespace TriciazAdventures
                 //tex.SetData(regTriciazColor);
 
                 //ball.Speed = new Vector2(ball.Speed.X, -ball.Speed.Y);
-                //hitSound.Play();
-            }
-            else
-            {
-                triciaz.XSpeed = initSpeed;
-                //triciaz.Position = initPosition;
-                //triciaz.Color = initTriciazColor;
 
+
+            }
+            else if (triciazRect.Intersects(bluebleRect))
+            {
+                triciaz.XSpeed = decreasedSpeed;
+                triciaz.Position -= collided;
+            }
+            else if (!triciazRect.Intersects(bluebleRect))
+            {
+                isColliding = false;
+                triciaz.XSpeed = initSpeed;
             }
 
 

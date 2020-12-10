@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace TriciazAdventures
 {
@@ -17,6 +19,8 @@ namespace TriciazAdventures
         private Vector2 titleDimension;
         private Texture2D menuBackGroundTex;
         private MenuComponent menu;
+        //private Song gameTheme;
+        //public Song GameTheme { get => gameTheme; set => gameTheme = value; }
         public MenuComponent Menu { get => menu; set => menu = value; }
 
         private string[] menuItems = { "Start Game!", "How To Play", "Highest Scores", "About", "Quit" };
@@ -31,6 +35,7 @@ namespace TriciazAdventures
 
             menuBackGroundTex = game.Content.Load<Texture2D>("Images/Backgrounds/mainscreen");
             gameTitle = game.Content.Load<SpriteFont>("Fonts/TitleFont");
+            //gameTheme = game.Content.Load<Song>("Sounds/staticscenessound");
             titleDimension = gameTitle.MeasureString(title);
             titlePosition = new Vector2(Shared.stage.X / 2 - titleDimension.X / 2, titleDimension.Y);
 
