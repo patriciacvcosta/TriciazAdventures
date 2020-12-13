@@ -15,6 +15,7 @@ namespace TriciazAdventures
         private TriciazCharacter triciaz;
         private BluebleCharacter blueble;
         private SoundEffect damageSound;
+        
 
         Vector2 initSpeed;
         Vector2 initPosition;
@@ -34,7 +35,6 @@ namespace TriciazAdventures
             isColliding = false;
         }
 
-
         public override void Update(GameTime gameTime)
         {
             Rectangle triciazRect = triciaz.GetCharBoundary();
@@ -49,7 +49,7 @@ namespace TriciazAdventures
                 damageSound.Play();
                 reduceLife++;
                 isColliding = true;
-
+                triciaz.isColliding = true;
 
             }
             else if (triciazRect.Intersects(bluebleRect))

@@ -22,6 +22,7 @@ namespace TriciazAdventures
         private ActionScene actionScene;
         private HowToPlayScene howToPlayScene;
         private AboutScene aboutScene;
+        private GameOverScene gameOverScene;
 
         public Game1()
         {
@@ -64,7 +65,10 @@ namespace TriciazAdventures
             startScene = new StartScene(this, spriteBatch);
             this.Components.Add(startScene);
 
-            actionScene = new ActionScene(this, spriteBatch);
+            gameOverScene = new GameOverScene(this, spriteBatch);
+            this.Components.Add(gameOverScene);
+
+            actionScene = new ActionScene(this, spriteBatch, gameOverScene);
             this.Components.Add(actionScene);
 
             howToPlayScene = new HowToPlayScene(this, spriteBatch);
@@ -73,7 +77,6 @@ namespace TriciazAdventures
             aboutScene = new AboutScene(this, spriteBatch);
             this.Components.Add(aboutScene);
 
-            
 
             startScene.ShowScene();
 
@@ -155,6 +158,11 @@ namespace TriciazAdventures
                     MediaPlayer.Play(gameTheme);
                 }
             }
+            //if (gameOverScene.Enabled)
+            //{
+                
+            //    gameOverScene.ShowScene();
+            //}
             if (howToPlayScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))

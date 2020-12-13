@@ -4,8 +4,10 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Microsoft.Xna.Framework;
+using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
+using Microsoft.Xna.Framework.Media;
 
 namespace TriciazAdventures
 {
@@ -15,21 +17,26 @@ namespace TriciazAdventures
 
         private Vector2 initPosition;
         private Texture2D heart;
-        private const int INITIAL_LIFE = 5;
+        private const int INITIAL_LIFE = 1;
         private Collision collision;
         private Vector2 position;
-        private int currentLife;
-
+        private int currentLife = INITIAL_LIFE;
+        private ActionScene actionScene;
+        GameOverScene gameOverScene;
         int space;
 
         public int CurrentLife { get => currentLife; set => currentLife = value; }
 
-        public Life(Game game, SpriteBatch spriteBatch, Texture2D heart, Vector2 initPosition, Collision collision) : base(game)
+        public Life(Game game, SpriteBatch spriteBatch, Texture2D heart, Vector2 initPosition, Collision collision, ActionScene actionScene,
+            GameOverScene gameOverScene) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.heart = heart;
             this.initPosition = initPosition;
             this.collision = collision;
+            this.actionScene = actionScene;
+            this.gameOverScene = gameOverScene;
+
 
         }
 
@@ -51,5 +58,23 @@ namespace TriciazAdventures
             base.Draw(gameTime);
         }
 
+        public override void Update(GameTime gameTime)
+        {
+            if (currentLife == 0)
+            {
+                GameOver();
+            }
+
+            base.Update(gameTime);
+        }
+
+        private void GameOver()
+        {
+            actionScene.Enabled = false;
+            gameOverScene.Enabled = true;
+            gameOverScene.ShowScene();
+            gameOverScene.GameOverSound.Play();
+
+        }
     }
 }

@@ -21,6 +21,9 @@ namespace TriciazAdventures
         private Vector2 gravity;
         private SoundEffect jumpSound;
 
+
+        public bool isColliding = false;
+
         //private Color[] colorData;
         //private Color triciazColor;
 
@@ -113,6 +116,20 @@ namespace TriciazAdventures
                 jumpingSpeed -= gravity;
                 jumpSound.Play();
             }
+
+        }
+
+        public override void Draw(GameTime gameTime)
+        {
+            //if (isColliding)
+            //{
+            //    spriteBatch.Draw(tex, )
+            //}
+            //else {
+            //    base.Draw(gameTime);
+            //}
+
+            base.Draw(gameTime);
 
         }
     }

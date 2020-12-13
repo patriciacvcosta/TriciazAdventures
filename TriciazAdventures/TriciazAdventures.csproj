@@ -46,6 +46,7 @@
     <Compile Include="BluebleCharacter.cs" />
     <Compile Include="Character.cs" />
     <Compile Include="Collision.cs" />
+    <Compile Include="GameOverScene.cs" />
     <Compile Include="GameScene.cs" />
     <Compile Include="HowToPlayScene.cs" />
     <Compile Include="Life.cs" />

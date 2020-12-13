@@ -19,8 +19,6 @@ namespace TriciazAdventures
         private Vector2 titleDimension;
         private Texture2D menuBackGroundTex;
         private MenuComponent menu;
-        //private Song gameTheme;
-        //public Song GameTheme { get => gameTheme; set => gameTheme = value; }
         public MenuComponent Menu { get => menu; set => menu = value; }
 
         private string[] menuItems = { "Start Game!", "How To Play", "Highest Scores", "About", "Quit" };
@@ -32,13 +30,11 @@ namespace TriciazAdventures
 
             SpriteFont regularFont = game.Content.Load<SpriteFont>("Fonts/RegularFont");
             SpriteFont highlightFont = game.Content.Load<SpriteFont>("Fonts/HighlightFont");
-
             menuBackGroundTex = game.Content.Load<Texture2D>("Images/Backgrounds/mainscreen");
             gameTitle = game.Content.Load<SpriteFont>("Fonts/TitleFont");
-            //gameTheme = game.Content.Load<Song>("Sounds/staticscenessound");
+
             titleDimension = gameTitle.MeasureString(title);
             titlePosition = new Vector2(Shared.stage.X / 2 - titleDimension.X / 2, titleDimension.Y);
-
             menu = new MenuComponent(game, spriteBatch, regularFont, highlightFont, menuItems, menuItems[2]);
 
             this.Scenes.Add(menu);

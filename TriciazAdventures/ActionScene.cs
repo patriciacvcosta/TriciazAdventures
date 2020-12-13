@@ -20,12 +20,13 @@ namespace TriciazAdventures
         private Collision charsCollision;
         private Score score;
         private Life life;
+        private GameOverScene gameOverScene;
         private Song gameSound;
         public Song GameSound { get => gameSound; set => gameSound = value; }
 
         private const float GRAVITY = 28;
 
-        public ActionScene(Game game, SpriteBatch spriteBatch) : base(game)
+        public ActionScene(Game game, SpriteBatch spriteBatch, GameOverScene gameOverScene) : base(game)
         {
             this.spriteBatch = spriteBatch;
 
@@ -33,31 +34,32 @@ namespace TriciazAdventures
             Rectangle srcRect = new Rectangle(0, 0, backGroundTex.Width, backGroundTex.Height);
             Vector2 pos = new Vector2(0, Shared.stage.Y - srcRect.Height);
             Vector2 speed = new Vector2(2, 0);
+            Texture2D triciaTex = game.Content.Load<Texture2D>("Images/Characters/Triciaz2.2");
+            Texture2D bluebleTex = game.Content.Load<Texture2D>("Images/Characters/blueble");
             GameSound = game.Content.Load<Song>("Sounds/trilha_jogo");
+            SoundEffect damageSound = game.Content.Load<SoundEffect>("Sounds/damage");
+            SoundEffect jumpSound = game.Content.Load<SoundEffect>("Sounds/jump3");
+            Texture2D heart = game.Content.Load<Texture2D>("Images/GameRun/life");
+            SpriteFont font = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
 
             scrollingBackground = new ScrollingBackground(game, spriteBatch, backGroundTex, pos, srcRect, speed, GameSound);
 
-            Texture2D triciaTex = game.Content.Load<Texture2D>("Images/Characters/Triciaz2.2");
             Vector2 triciaXSpeed = new Vector2(4, 0);
             Vector2 triciaYSpeed = new Vector2(0, 0);
             Vector2 gravity = new Vector2(0, GRAVITY);
-            SoundEffect jumpSound = game.Content.Load<SoundEffect>("Sounds/jump3");
-
             triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity, jumpSound);
 
-            Texture2D bluebleTex = game.Content.Load<Texture2D>("Images/Characters/blueble");
             Vector2 bluebleXSpeed = new Vector2(8, 0);
             blueble = new BluebleCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);
 
-            SoundEffect damageSound = game.Content.Load<SoundEffect>("Sounds/damage");
             charsCollision = new Collision(game, triciaz, blueble, damageSound);
 
-            SpriteFont font = game.Content.Load<SpriteFont>("Fonts/ScoreFont");
+            this.gameOverScene = gameOverScene;
+            life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision, this, this.gameOverScene);
+
             score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), "", Color.Cornsilk);
 
 
-            Texture2D heart = game.Content.Load<Texture2D>("Images/GameRun/life");
-            life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision);
 
             this.Scenes.Add(scrollingBackground);
             this.Scenes.Add(triciaz);
@@ -65,6 +67,7 @@ namespace TriciazAdventures
             this.Scenes.Add(charsCollision);
             this.Scenes.Add(score);
             this.Scenes.Add(life);
+            this.Scenes.Add(gameOverScene);
 
 
         }
