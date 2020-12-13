@@ -20,7 +20,7 @@ namespace TriciazAdventures
         private const float GRAVITY = 1;
         private const float INCREMENT_YSPEED = -28;
 
-        private Vector2 jumpingSpeed;
+        private Vector2 triciazYSpeed;
         //private Vector2 gravity;
         private SoundEffect jumpSound;
 
@@ -37,11 +37,11 @@ namespace TriciazAdventures
         //public Color[] ColorData { get => colorData; set => colorData = value; }
         //public Color TriciazColor { get => triciazColor; set => triciazColor = value; }
 
-        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, Vector2 jumpingSpeed, /*Vector2 gravity,*/ SoundEffect jumpSound)
-            : base(game, spriteBatch, tex, xspeed, ROW, COL, FRAMING_SPEED)
+        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 triciazXSpeed, Vector2 triciazYSpeed, /*Vector2 gravity,*/ SoundEffect jumpSound)
+            : base(game, spriteBatch, tex, triciazXSpeed, ROW, COL, FRAMING_SPEED)
         {
             position = new Vector2(frameDimension.X, Shared.stage.Y - frameDimension.Y);
-            this.jumpingSpeed = jumpingSpeed;
+            this.triciazYSpeed = triciazYSpeed;
             //this.gravity = gravity;
             startY = position.Y;
             isJumping = false;
@@ -64,7 +64,7 @@ namespace TriciazAdventures
             {
                 ProcessJump();
             }
-            else
+            else if (ks.IsKeyDown(Keys.Up))
             {
                 StartJump();
             }
@@ -99,12 +99,12 @@ namespace TriciazAdventures
         }
         private void ProcessJump()
         {
-            position.Y += jumpingSpeed.Y;
-            jumpingSpeed.Y += GRAVITY;
+            position.Y += triciazYSpeed.Y;
+            triciazYSpeed.Y += GRAVITY;
 
             if (position.Y >= startY)
             {
-                jumpingSpeed.Y = 0;
+                triciazYSpeed.Y = 0;
                 position.Y = startY;
                 isJumping = false;
             }
@@ -112,12 +112,9 @@ namespace TriciazAdventures
 
         private void StartJump()
         {
-            if (ks.IsKeyDown(Keys.Up))
-            {
-                isJumping = true;
-                jumpingSpeed.Y += INCREMENT_YSPEED;
-                jumpSound.Play();
-            }
+            isJumping = true;
+            triciazYSpeed.Y += INCREMENT_YSPEED;
+            jumpSound.Play();
 
         }
 

@@ -13,7 +13,7 @@ namespace TriciazAdventures
     public class Collision : GameComponent
     {
         private TriciazCharacter triciaz;
-        private BluebleCharacter blueble;
+        private EnemyCharacter blueble;
         private SoundEffect damageSound;
         
 
@@ -24,7 +24,7 @@ namespace TriciazAdventures
         public bool IsColliding { get => isColliding; set => isColliding = value; }
         public int ReduceLife { get => reduceLife; set => reduceLife = value; }
 
-        public Collision(Game game, TriciazCharacter triciaz, BluebleCharacter blueble, SoundEffect damageSound) : base(game)
+        public Collision(Game game, TriciazCharacter triciaz, EnemyCharacter blueble, SoundEffect damageSound) : base(game)
         {
             this.triciaz = triciaz;
             this.blueble = blueble;

@@ -14,28 +14,34 @@ namespace TriciazAdventures
         protected SpriteBatch spriteBatch;
 
         private SpriteFont font;
-        private string scoreMsg;
+        private string scoreCounter;
         private Vector2 position;
         private Color textColor;
 
-        public string ScoreMsg { get => scoreMsg; set => scoreMsg = value; }
+        public string ScoreCounter { get => scoreCounter; set => scoreCounter = value; }
 
-        public Score(Game game, SpriteBatch spriteBatch, SpriteFont font, Vector2 position, string scoreMsg, Color textColor) : base(game)
+        public Score(Game game, SpriteBatch spriteBatch, SpriteFont font, Vector2 position, Color textColor) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.font = font;
             this.position = position;
-            this.scoreMsg = scoreMsg;
             this.textColor = textColor;
         }
 
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            spriteBatch.DrawString(font, scoreMsg, position, textColor);
+            spriteBatch.DrawString(font, scoreCounter.ToString(), position, textColor);
             spriteBatch.End();
 
             base.Draw(gameTime);
+        }
+
+        public override void Update(GameTime gameTime)
+        {
+
+            scoreCounter = Math.Round(gameTime.TotalGameTime.TotalSeconds, 2).ToString();
+            base.Update(gameTime);
         }
     }
 }

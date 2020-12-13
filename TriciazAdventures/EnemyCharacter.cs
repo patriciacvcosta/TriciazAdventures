@@ -9,23 +9,25 @@ using Microsoft.Xna.Framework.Input;
 
 namespace TriciazAdventures
 {
-    public class BluebleCharacter : Character
+    public class EnemyCharacter : Character
     {
         protected const int ROW = 7;
         protected const int COL = 4;
         private const int FRAMING_SPEED = 1;
 
-        private const int MIN_XSPEED = 1;
-        private const int MAX_XSPEED = 20;
-        int speed;
-        Random random;
+        private const int MIN_XSPEED = 3;
+        private const int MAX_XSPEED = 13;
 
-        public BluebleCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed) 
+        private const int MIN_DELAY = 0;
+        private const int MAX_DELAY = 200;
+        int speed;
+        Random random = new Random();
+        int delay;
+        public EnemyCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed)
             : base(game, spriteBatch, tex, xspeed, ROW, COL, FRAMING_SPEED)
         {
-            position = new Vector2(Shared.stage.X - frameDimension.X, Shared.stage.Y - frameDimension.Y);
-
-            random = new Random();
+            delay = random.Next(MIN_DELAY, MAX_DELAY);
+            position = new Vector2(Shared.stage.X - frameDimension.X + delay, Shared.stage.Y - frameDimension.Y);
         }
 
         public override void Draw(GameTime gameTime)

@@ -15,7 +15,7 @@ namespace TriciazAdventures
     {
         private SpriteBatch spriteBatch;
         private TriciazCharacter triciaz;
-        private BluebleCharacter blueble;
+        private EnemyCharacter blueble;
         private ScrollingBackground scrollingBackground;
         private Collision charsCollision;
         private Score score;
@@ -24,7 +24,7 @@ namespace TriciazAdventures
         private Song gameSound;
         public Song GameSound { get => gameSound; set => gameSound = value; }
 
-        //private const float GRAVITY = 28;
+        private const float GRAVITY = 28;
 
         public ActionScene(Game game, SpriteBatch spriteBatch, GameOverScene gameOverScene) : base(game)
         {
@@ -50,14 +50,15 @@ namespace TriciazAdventures
             triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, jumpSound);
 
             Vector2 bluebleXSpeed = new Vector2(8, 0);
-            blueble = new BluebleCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);
+            blueble = new EnemyCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);
 
             charsCollision = new Collision(game, triciaz, blueble, damageSound);
 
-            this.gameOverScene = gameOverScene;
-            life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision, this, this.gameOverScene);
+            score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), Color.Cornsilk);
 
-            score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), "", Color.Cornsilk);
+            this.gameOverScene = gameOverScene;
+            life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision, this, this.gameOverScene, score);
+
 
 
 
@@ -74,7 +75,7 @@ namespace TriciazAdventures
 
         public override void Update(GameTime gameTime)
         {
-            score.ScoreMsg = "[" + Math.Round(gameTime.TotalGameTime.TotalSeconds, 2) + "]";
+            //score.ScoreMsg = "[" + Math.Round(gameTime.TotalGameTime.TotalSeconds, 2) + "]";
             base.Update(gameTime);
         }
 
