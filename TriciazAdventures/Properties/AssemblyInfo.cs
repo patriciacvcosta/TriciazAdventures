@@ -8,7 +8,7 @@ using System.Runtime.InteropServices;
 [assembly: AssemblyTitle("Triciaz Adventures Installer")]
 [assembly: AssemblyProduct("TriciazAdventures")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyDescription("")]
+[assembly: AssemblyDescription("Triciaz Adventures Installer App")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©PatriciaCosta  2020")]
 [assembly: AssemblyTrademark("")]

@@ -26,7 +26,6 @@ namespace TriciazAdventures
 
         public Vector2 XSpeed { get => xSpeed; set => xSpeed = value; }
         public Vector2 Position { get => position; set => position = value; }
-        //public Texture2D Tex { get => tex; set => tex = value; }
 
         public Character(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, int rows, int cols, int framingSpeed) : base(game)
         {
@@ -60,10 +59,13 @@ namespace TriciazAdventures
         public override void Update(GameTime gameTime)
         {
             UpdateFrames();
-
             base.Update(gameTime);
 
         }
+
+        /// <summary>
+        /// 
+        /// </summary>
         protected void GenerateFrames()
         {
             frames = new List<Rectangle>();
@@ -79,6 +81,7 @@ namespace TriciazAdventures
             }
         }
 
+
         protected void StartFrame()
         {
             frameIndex = 0;
@@ -86,6 +89,7 @@ namespace TriciazAdventures
             this.Visible = true;
 
         }
+
 
         protected void UpdateFrames()
         {
@@ -101,6 +105,8 @@ namespace TriciazAdventures
                 framingSpeedCounter = 0;
             }
         }
+
+
         public Rectangle GetCharBoundary()
         {
             return new Rectangle((int)position.X, (int)position.Y, (int)frameDimension.X, (int)frameDimension.Y);

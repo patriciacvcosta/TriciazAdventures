@@ -18,10 +18,6 @@ namespace TriciazAdventures
         private MenuComponent menu;
         private SoundEffect gameOverSound;
 
-
-        private Texture2D nameInput;
-        private Rectangle inputNameRect;
-
         public SoundEffect GameOverSound { get => gameOverSound; set => gameOverSound = value; }
         public MenuComponent Menu { get => menu; set => menu = value; }
 
@@ -31,12 +27,10 @@ namespace TriciazAdventures
         {
             this.spriteBatch = spriteBatch;
             tex = game.Content.Load<Texture2D>("Images/Backgrounds/game-over2");
-            nameInput = game.Content.Load<Texture2D>("Images/GameRun/nameInput");
             SpriteFont regularFont = game.Content.Load<SpriteFont>("Fonts/GameOverFont");
             SpriteFont highlightFont = game.Content.Load<SpriteFont>("Fonts/GameOverHighlightFont");
             gameOverSound = game.Content.Load<SoundEffect>("Sounds/lose2");
 
-            inputNameRect = new Rectangle(0, 0, nameInput.Width, nameInput.Height);
             menu = new MenuComponent(game, spriteBatch, regularFont, highlightFont, menuItems, menuItems[0]);
             this.Scenes.Add(menu);
         }
