@@ -56,8 +56,6 @@ namespace TriciazAdventures
         public override void Update(GameTime gameTime)
         {
             MediaPlayer.Stop();
-
-
             base.Update(gameTime);
         }
     }

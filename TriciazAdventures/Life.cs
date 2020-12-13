@@ -62,7 +62,6 @@ namespace TriciazAdventures
             if (currentLife == 0)
             {
                 GameOver();
-
             }
 
             base.Update(gameTime);
@@ -73,7 +72,6 @@ namespace TriciazAdventures
             actionScene.Enabled = false;
             gameOverScene.Enabled = true;
             gameOverScene.ShowScene();
-
         }
 
     }

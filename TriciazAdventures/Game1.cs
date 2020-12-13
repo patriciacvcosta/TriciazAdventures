@@ -18,7 +18,6 @@ namespace TriciazAdventures
         Song gameTheme;
         bool isGameThemePlaying = false;
         bool isGameOverPlaying = false;
-        //TriciazAnimation triciaz;
 
         private StartScene startScene;
         private ActionScene actionScene;
@@ -34,8 +33,8 @@ namespace TriciazAdventures
 
             IsMouseVisible = true;
 
-            graphics.PreferredBackBufferWidth = 1280;  // set this value to the desired width of your window
-            graphics.PreferredBackBufferHeight = 720;   // set this value to the desired height of your window
+            graphics.PreferredBackBufferWidth = 1280;
+            graphics.PreferredBackBufferHeight = 720;
             graphics.ApplyChanges();
         }
 

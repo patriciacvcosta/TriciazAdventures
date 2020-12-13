@@ -21,37 +21,23 @@ namespace TriciazAdventures
         private const float INCREMENT_YSPEED = -28;
 
         private Vector2 triciazYSpeed;
-        //private Vector2 gravity;
         private SoundEffect jumpSound;
 
-
         public bool isColliding = false;
-
-        //private Color[] colorData;
-        //private Color triciazColor;
 
         float startY = 0;
         bool isJumping;
         KeyboardState ks;
 
-        //public Color[] ColorData { get => colorData; set => colorData = value; }
-        //public Color TriciazColor { get => triciazColor; set => triciazColor = value; }
-
-        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 triciazXSpeed, Vector2 triciazYSpeed, /*Vector2 gravity,*/ SoundEffect jumpSound)
+        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 triciazXSpeed, Vector2 triciazYSpeed, SoundEffect jumpSound)
             : base(game, spriteBatch, tex, triciazXSpeed, ROW, COL, FRAMING_SPEED)
         {
             position = new Vector2(frameDimension.X, Shared.stage.Y - frameDimension.Y);
             this.triciazYSpeed = triciazYSpeed;
-            //this.gravity = gravity;
             startY = position.Y;
             isJumping = false;
             this.jumpSound = jumpSound;
-
-
-            //triciazColor = Color.White;
         }
-
-
 
         public override void Update(GameTime gameTime)
         {
@@ -70,7 +56,6 @@ namespace TriciazAdventures
             }
 
             base.Update(gameTime);
-
         }
 
         private void MoveHorizontal()
@@ -120,16 +105,7 @@ namespace TriciazAdventures
 
         public override void Draw(GameTime gameTime)
         {
-            //if (isColliding)
-            //{
-            //    spriteBatch.Draw(tex, )
-            //}
-            //else {
-            //    base.Draw(gameTime);
-            //}
-
             base.Draw(gameTime);
-
         }
     }
 }

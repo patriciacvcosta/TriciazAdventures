@@ -49,8 +49,6 @@ namespace TriciazAdventures
 
         public override void Update(GameTime gameTime)
         {
-
-
             base.Update(gameTime);
         }
     }

@@ -38,7 +38,6 @@ namespace TriciazAdventures
             menu = new MenuComponent(game, spriteBatch, regularFont, highlightFont, menuItems, menuItems[2]);
 
             this.Scenes.Add(menu);
-
         }
 
         public override void Draw(GameTime gameTime)

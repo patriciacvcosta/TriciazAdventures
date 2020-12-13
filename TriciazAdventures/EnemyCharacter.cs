@@ -14,15 +14,15 @@ namespace TriciazAdventures
         protected const int ROW = 7;
         protected const int COL = 4;
         private const int FRAMING_SPEED = 1;
-
         private const int MIN_XSPEED = 3;
         private const int MAX_XSPEED = 13;
-
         private const int MIN_DELAY = 0;
         private const int MAX_DELAY = 200;
+
         int speed;
         Random random = new Random();
         int delay;
+
         public EnemyCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed)
             : base(game, spriteBatch, tex, xspeed, ROW, COL, FRAMING_SPEED)
         {
