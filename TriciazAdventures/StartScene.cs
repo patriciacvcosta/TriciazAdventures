@@ -30,7 +30,7 @@ namespace TriciazAdventures
 
             SpriteFont regularFont = game.Content.Load<SpriteFont>("Fonts/RegularFont");
             SpriteFont highlightFont = game.Content.Load<SpriteFont>("Fonts/HighlightFont");
-            menuBackGroundTex = game.Content.Load<Texture2D>("Images/Backgrounds/mainscreen2");
+            menuBackGroundTex = game.Content.Load<Texture2D>("Images/Backgrounds/mainscreen3");
             gameTitle = game.Content.Load<SpriteFont>("Fonts/TitleFont");
 
             titleDimension = gameTitle.MeasureString(title);

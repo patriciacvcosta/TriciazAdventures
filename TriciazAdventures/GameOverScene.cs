@@ -32,8 +32,8 @@ namespace TriciazAdventures
             this.spriteBatch = spriteBatch;
             tex = game.Content.Load<Texture2D>("Images/Backgrounds/game-over2");
             nameInput = game.Content.Load<Texture2D>("Images/GameRun/nameInput");
-            SpriteFont regularFont = game.Content.Load<SpriteFont>("Fonts/RegularFont");
-            SpriteFont highlightFont = game.Content.Load<SpriteFont>("Fonts/HighlightFont");
+            SpriteFont regularFont = game.Content.Load<SpriteFont>("Fonts/GameOverFont");
+            SpriteFont highlightFont = game.Content.Load<SpriteFont>("Fonts/GameOverHighlightFont");
             gameOverSound = game.Content.Load<SoundEffect>("Sounds/lose2");
 
             inputNameRect = new Rectangle(0, 0, nameInput.Width, nameInput.Height);

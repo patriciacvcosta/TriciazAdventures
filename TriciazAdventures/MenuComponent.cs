@@ -22,7 +22,7 @@ namespace TriciazAdventures
 
         private Vector2 position;
         private Color normalColor = Color.Black;
-        private Color selectedColor = Color.Purple;
+        private Color selectedColor = Color.Cornsilk;
 
         private KeyboardState oldState;
 

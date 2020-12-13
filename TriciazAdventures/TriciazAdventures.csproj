@@ -67,7 +67,6 @@
     <Compile Include="HowToPlayScene.cs" />
     <Compile Include="Life.cs" />
     <Compile Include="MenuComponent.cs" />
-    <Compile Include="PlayerNameInput.cs" />
     <Compile Include="Score.cs" />
     <Compile Include="Shared.cs" />
     <Compile Include="StartScene.cs" />

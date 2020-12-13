@@ -16,6 +16,7 @@ namespace TriciazAdventures
         private SpriteBatch spriteBatch;
         private TriciazCharacter triciaz;
         private EnemyCharacter blueble;
+        private EnemyCharacter flyingBlueble;
         private ScrollingBackground scrollingBackground;
         private Collision charsCollision;
         public Score score;
@@ -52,15 +53,15 @@ namespace TriciazAdventures
             Vector2 bluebleXSpeed = new Vector2(8, 0);
             blueble = new EnemyCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);
 
+            //Vector2 flyingBluebleXSpeed = new Vector2(8, 0);
+            //flyingBlueble = new EnemyCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);
+
             charsCollision = new Collision(game, triciaz, blueble, damageSound);
 
             this.gameOverScene = gameOverScene;
             life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision, this, this.gameOverScene);
 
             score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), Color.Cornsilk, life);
-
-
-
 
 
             this.Scenes.Add(scrollingBackground);
@@ -77,6 +78,12 @@ namespace TriciazAdventures
         public override void Update(GameTime gameTime)
         {
             //score.ScoreMsg = "[" + Math.Round(gameTime.TotalGameTime.TotalSeconds, 2) + "]";
+
+            //if (score.ScoreCounter > 100)
+            //{
+            //    this.Scenes.Add(flyingBlueble);
+            //}
+
             base.Update(gameTime);
         }
 

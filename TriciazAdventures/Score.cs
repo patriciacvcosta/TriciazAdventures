@@ -73,7 +73,7 @@ namespace TriciazAdventures
             }
             catch (Exception)
             {
-                //MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Score wasn't saved.", new List<string>() { "Ok" });
+                MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Score wasn't saved.", new List<string>() { "Ok" });
             }
         }
 
@@ -94,7 +94,7 @@ namespace TriciazAdventures
             catch (Exception)
             {
 
-                //MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Scores couldn't be read.", new List<string>() { "Ok" });
+                MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Scores couldn't be read.", new List<string>() { "Ok" });
             }
         }
     }

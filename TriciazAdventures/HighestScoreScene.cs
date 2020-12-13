@@ -25,7 +25,7 @@ namespace TriciazAdventures
             tex = game.Content.Load<Texture2D>("Images/Backgrounds/highestscore");
             regularFont = game.Content.Load<SpriteFont>("Fonts/RegularFont");
             this.score = score;
-            position = new Vector2(583, 200);
+            position = new Vector2(570, 200);
             score.GetScoresFromFile();
             highestScores = score.ScoreList.OrderByDescending(s => s).Take(10).ToList();
         }
