@@ -18,7 +18,7 @@ namespace TriciazAdventures
         private EnemyCharacter blueble;
         private ScrollingBackground scrollingBackground;
         private Collision charsCollision;
-        private Score score;
+        public Score score;
         private Life life;
         private GameOverScene gameOverScene;
         private Song gameSound;
@@ -54,10 +54,11 @@ namespace TriciazAdventures
 
             charsCollision = new Collision(game, triciaz, blueble, damageSound);
 
-            score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), Color.Cornsilk);
-
             this.gameOverScene = gameOverScene;
-            life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision, this, this.gameOverScene, score);
+            life = new Life(game, spriteBatch, heart, new Vector2(5, 5), charsCollision, this, this.gameOverScene);
+
+            score = new Score(game, spriteBatch, font, new Vector2(Shared.stage.X - 120, 10), Color.Cornsilk, life);
+
 
 
 

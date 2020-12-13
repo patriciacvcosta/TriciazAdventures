@@ -25,6 +25,7 @@ namespace TriciazAdventures
         private HowToPlayScene howToPlayScene;
         private AboutScene aboutScene;
         private GameOverScene gameOverScene;
+        private HighestScoreScene highestScoreScene;
 
         public Game1()
         {
@@ -79,6 +80,8 @@ namespace TriciazAdventures
             aboutScene = new AboutScene(this, spriteBatch);
             this.Components.Add(aboutScene);
 
+            highestScoreScene = new HighestScoreScene(this, spriteBatch, actionScene.score);
+            this.Components.Add(highestScoreScene);
 
             startScene.ShowScene();
 
@@ -138,11 +141,13 @@ namespace TriciazAdventures
                     howToPlayScene.ShowScene();
 
                 }
-                //if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
-                //{
-                //    startScene.HideScene();
-                //    highestScoreScene.ShowScene();
-                //}
+                if (selectedIndex == 2 && ks.IsKeyDown(Keys.Enter))
+                {
+                    startScene.HideScene();
+                    highestScoreScene = new HighestScoreScene(this, spriteBatch, actionScene.score);
+                    this.Components.Add(highestScoreScene);
+                    highestScoreScene.ShowScene();
+                }
                 if (selectedIndex == 3 && ks.IsKeyDown(Keys.Enter))
                 {
                     aboutScene.HideScene();
@@ -207,14 +212,14 @@ namespace TriciazAdventures
                     startScene.ShowScene();
                 }
             }
-            //if (highestScoreScene.Enabled)
-            //{
-            //    if (ks.IsKeyDown(Keys.Escape))
-            //    {
-            //        highestScoreScene.HideScene();
-            //        startScene.ShowScene();
-            //    }
-            //}
+            if (highestScoreScene.Enabled)
+            {
+                if (ks.IsKeyDown(Keys.Escape))
+                {
+                    highestScoreScene.HideScene();
+                    startScene.ShowScene();
+                }
+            }
 
 
             base.Update(gameTime);

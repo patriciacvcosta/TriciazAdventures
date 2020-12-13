@@ -18,21 +18,18 @@ namespace TriciazAdventures
 
         private Vector2 initPosition;
         private Texture2D heart;
-        private const int INITIAL_LIFE = 5;
+        private const int INITIAL_LIFE = 1;
         private Collision collision;
         private Vector2 position;
-        private Score scoreCounter;
         private int currentLife = INITIAL_LIFE;
         private ActionScene actionScene;
         GameOverScene gameOverScene;
         int space;
 
-        List<string> ScoreList = new List<string>();
-
         public int CurrentLife { get => currentLife; set => currentLife = value; }
 
         public Life(Game game, SpriteBatch spriteBatch, Texture2D heart, Vector2 initPosition, Collision collision, ActionScene actionScene,
-            GameOverScene gameOverScene, Score scoreCounter) : base(game)
+            GameOverScene gameOverScene) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.heart = heart;
@@ -40,9 +37,6 @@ namespace TriciazAdventures
             this.collision = collision;
             this.actionScene = actionScene;
             this.gameOverScene = gameOverScene;
-            this.scoreCounter = scoreCounter;
-
-
         }
 
         public override void Draw(GameTime gameTime)
@@ -68,8 +62,6 @@ namespace TriciazAdventures
             if (currentLife == 0)
             {
                 GameOver();
-                GetScoresFromFile();
-                SaveScore();
 
             }
 
@@ -81,49 +73,8 @@ namespace TriciazAdventures
             actionScene.Enabled = false;
             gameOverScene.Enabled = true;
             gameOverScene.ShowScene();
-            //gameOverScene.GameOverSound.Play();
 
         }
 
-        private void SaveScore()
-        {
-            ScoreList.Add(scoreCounter.ScoreCounter);
-
-            try
-            {
-                using (StreamWriter writer = new StreamWriter(@"test.txt"))
-                {
-                    for (int i = 0; i < ScoreList.Count; i++)
-                    {
-                        writer.WriteLine(ScoreList[i]);
-                    }
-
-                }
-            }
-            catch (Exception)
-            {
-                //MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Score wasn't saved.", Buttons.Back);
-            }
-        }
-
-        private void GetScoresFromFile()
-        {
-            try
-            {
-                using (StreamReader reader = new StreamReader(@"test.txt"))
-                {
-                    while (!reader.EndOfStream)
-                    {
-                        ScoreList.Add(reader.ReadLine());
-
-                    }
-                }
-            }
-            catch (Exception)
-            {
-
-                //MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Score wasn't saved.", MessageBoxButtons.);
-            }
-        }
     }
 }
