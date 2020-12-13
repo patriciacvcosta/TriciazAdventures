@@ -89,24 +89,40 @@ namespace TriciazAdventures
         {
             ScoreList.Add(scoreCounter.ScoreCounter);
 
-            using (StreamWriter writer = new StreamWriter(@"test.txt"))
+            try
             {
-                for (int i = 0; i < ScoreList.Count; i++)
+                using (StreamWriter writer = new StreamWriter(@"test.txt"))
                 {
-                    writer.WriteLine(ScoreList[i]);
+                    for (int i = 0; i < ScoreList.Count; i++)
+                    {
+                        writer.WriteLine(ScoreList[i]);
+                    }
+
                 }
+            }
+            catch (Exception)
+            {
+                //MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Score wasn't saved.", Buttons.Back);
             }
         }
 
         private void GetScoresFromFile()
         {
-            using (StreamReader reader = new StreamReader(@"test.txt"))
+            try
             {
-                while (!reader.EndOfStream)
+                using (StreamReader reader = new StreamReader(@"test.txt"))
                 {
-                    ScoreList.Add(reader.ReadLine());
+                    while (!reader.EndOfStream)
+                    {
+                        ScoreList.Add(reader.ReadLine());
 
+                    }
                 }
+            }
+            catch (Exception)
+            {
+
+                //MessageBox.Show("The Adventures Of Triciaz", "Something went wrong... Score wasn't saved.", MessageBoxButtons.);
             }
         }
     }
