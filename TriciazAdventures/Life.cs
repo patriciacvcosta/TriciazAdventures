@@ -17,7 +17,7 @@ namespace TriciazAdventures
 
         private Vector2 initPosition;
         private Texture2D heart;
-        private const int INITIAL_LIFE = 1;
+        private const int INITIAL_LIFE = 5;
         private Collision collision;
         private Vector2 position;
         private int currentLife = INITIAL_LIFE;
@@ -73,7 +73,7 @@ namespace TriciazAdventures
             actionScene.Enabled = false;
             gameOverScene.Enabled = true;
             gameOverScene.ShowScene();
-            gameOverScene.GameOverSound.Play();
+            //gameOverScene.GameOverSound.Play();
 
         }
     }

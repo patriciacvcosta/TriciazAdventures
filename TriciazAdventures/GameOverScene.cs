@@ -18,9 +18,9 @@ namespace TriciazAdventures
         private MenuComponent menu;
         private SoundEffect gameOverSound;
         public SoundEffect GameOverSound { get => gameOverSound; set => gameOverSound = value; }
+        public MenuComponent Menu { get => menu; set => menu = value; }
 
-
-        private string[] menuItems = { "Play Again", "Main Menu"};
+        private string[] menuItems = { "Main Menu", "Play Again" };
 
         public GameOverScene(Game game, SpriteBatch spriteBatch) : base(game)
         {

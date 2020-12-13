@@ -24,7 +24,7 @@ namespace TriciazAdventures
         private Song gameSound;
         public Song GameSound { get => gameSound; set => gameSound = value; }
 
-        private const float GRAVITY = 28;
+        //private const float GRAVITY = 28;
 
         public ActionScene(Game game, SpriteBatch spriteBatch, GameOverScene gameOverScene) : base(game)
         {
@@ -46,8 +46,8 @@ namespace TriciazAdventures
 
             Vector2 triciaXSpeed = new Vector2(4, 0);
             Vector2 triciaYSpeed = new Vector2(0, 0);
-            Vector2 gravity = new Vector2(0, GRAVITY);
-            triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, gravity, jumpSound);
+            //Vector2 gravity = new Vector2(0, GRAVITY);
+            triciaz = new TriciazCharacter(game, spriteBatch, triciaTex, triciaXSpeed, triciaYSpeed, jumpSound);
 
             Vector2 bluebleXSpeed = new Vector2(8, 0);
             blueble = new BluebleCharacter(game, spriteBatch, bluebleTex, bluebleXSpeed);

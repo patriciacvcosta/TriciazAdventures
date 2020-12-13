@@ -3,6 +3,7 @@ using Microsoft.Xna.Framework.Audio;
 using Microsoft.Xna.Framework.Graphics;
 using Microsoft.Xna.Framework.Input;
 using Microsoft.Xna.Framework.Media;
+using System.Threading;
 
 namespace TriciazAdventures
 {
@@ -16,6 +17,7 @@ namespace TriciazAdventures
 
         Song gameTheme;
         bool isGameThemePlaying = false;
+        bool isGameOverPlaying = false;
         //TriciazAnimation triciaz;
 
         private StartScene startScene;
@@ -105,10 +107,9 @@ namespace TriciazAdventures
             // TODO: Add your update logic here
 
             int selectedIndex = 0;
+            int gameOverIndex = 0;
 
             KeyboardState ks = Keyboard.GetState();
-
-            //MediaPlayer.Stop();
             
 
             if (startScene.Enabled)
@@ -122,11 +123,14 @@ namespace TriciazAdventures
                 selectedIndex = startScene.Menu.SelectedIndex;
                 if (selectedIndex == 0 && ks.IsKeyDown(Keys.Enter))
                 {
+                    gameTime.TotalGameTime = new System.TimeSpan(0);
                     isGameThemePlaying = false;
                     startScene.HideScene();
                     actionScene.ShowScene();
                     MediaPlayer.IsRepeating = true;
                     MediaPlayer.Play(actionScene.GameSound);
+
+
                 }
                 if (selectedIndex == 1 && ks.IsKeyDown(Keys.Enter))
                 {
@@ -151,6 +155,8 @@ namespace TriciazAdventures
             }
             if (actionScene.Enabled)
             {
+                //gameOverScene.HideScene();
+                //gameOverScene.Enabled = false;
                 if (ks.IsKeyDown(Keys.Escape))
                 {
                     actionScene.HideScene();
@@ -158,11 +164,33 @@ namespace TriciazAdventures
                     MediaPlayer.Play(gameTheme);
                 }
             }
-            //if (gameOverScene.Enabled)
-            //{
-                
-            //    gameOverScene.ShowScene();
-            //}
+            if (gameOverScene.Enabled)
+            {
+                gameOverIndex = gameOverScene.Menu.SelectedIndex;
+                if (!isGameOverPlaying)
+                {
+                    gameOverScene.GameOverSound.Play();
+                    isGameOverPlaying = true;
+                }
+                if (gameOverIndex == 0 && ks.IsKeyDown(Keys.Enter))
+                {
+                    ResetGame();
+                    actionScene.HideScene();
+                    startScene.Enabled = true;
+                    startScene.ShowScene();                    
+                    Thread.Sleep(200);
+                }
+                if (gameOverIndex == 1 && ks.IsKeyDown(Keys.Enter))
+                {
+                    ResetGame();
+                    MediaPlayer.IsRepeating = true;
+                    MediaPlayer.Play(actionScene.GameSound);
+                    gameTime.TotalGameTime = new System.TimeSpan(0);
+                    actionScene.Enabled = true;
+                    actionScene.ShowScene();
+                }
+
+            }
             if (howToPlayScene.Enabled)
             {
                 if (ks.IsKeyDown(Keys.Escape))
@@ -190,6 +218,20 @@ namespace TriciazAdventures
 
 
             base.Update(gameTime);
+        }
+
+        private void ResetGame()
+        {
+            //gameOverScene.GameOverSound.Dispose();
+            gameOverScene.HideScene();
+            gameOverScene.Enabled = false;
+            this.Components.Remove(gameOverScene);
+            this.Components.Remove(actionScene);
+            gameOverScene = new GameOverScene(this, spriteBatch);
+            actionScene = new ActionScene(this, spriteBatch, gameOverScene);
+            this.Components.Add(gameOverScene);
+            this.Components.Add(actionScene);
+            isGameOverPlaying = false;
         }
 
         /// <summary>
