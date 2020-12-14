@@ -5,10 +5,10 @@ using System.Runtime.InteropServices;
 // General Information about an assembly is controlled through the following 
 // set of attributes. Change these attribute values to modify the information
 // associated with an assembly.
-[assembly: AssemblyTitle("Triciaz Adventures Installer")]
+[assembly: AssemblyTitle("Triciaz Adventures")]
 [assembly: AssemblyProduct("TriciazAdventures")]
 [assembly: AssemblyConfiguration("")]
-[assembly: AssemblyDescription("Triciaz Adventures Installer App")]
+[assembly: AssemblyDescription("Triciaz Adventures App")]
 [assembly: AssemblyCompany("")]
 [assembly: AssemblyCopyright("Copyright ©PatriciaCosta  2020")]
 [assembly: AssemblyTrademark("")]
