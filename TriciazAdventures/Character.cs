@@ -27,7 +27,7 @@ namespace TriciazAdventures
         public Vector2 XSpeed { get => xSpeed; set => xSpeed = value; }
         public Vector2 Position { get => position; set => position = value; }
 
-        public Character(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, int rows, int cols, int framingSpeed) : base(game)
+        public Character(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, int rows, int cols, int framingSpeed, Vector2 position) : base(game)
         {
             this.spriteBatch = spriteBatch;
             this.tex = tex;
@@ -35,7 +35,7 @@ namespace TriciazAdventures
             this.framingSpeed = framingSpeed;
             this.row = rows;
             this.col = cols;
-
+            this.position = position;
             frameDimension = new Vector2(tex.Width / col, tex.Height / row);
 
             StartFrame();
@@ -63,9 +63,7 @@ namespace TriciazAdventures
 
         }
 
-        /// <summary>
-        /// 
-        /// </summary>
+
         protected void GenerateFrames()
         {
             frames = new List<Rectangle>();

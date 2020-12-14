@@ -62,7 +62,7 @@ namespace TriciazAdventures
 
             try
             {
-                using (StreamWriter writer = new StreamWriter(@"test.txt"))
+                using (StreamWriter writer = new StreamWriter(@"TriciazAdvScoresDb.txt"))
                 {
                     for (int i = 0; i < ScoreList.Count; i++)
                     {
@@ -82,7 +82,7 @@ namespace TriciazAdventures
             ScoreList.Clear();
             try
             {
-                using (StreamReader reader = new StreamReader(@"test.txt"))
+                using (StreamReader reader = new StreamReader(@"TriciazAdvScoresDb.txt"))
                 {
                     while (!reader.EndOfStream)
                     {

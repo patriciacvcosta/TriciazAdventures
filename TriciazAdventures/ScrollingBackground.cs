@@ -31,7 +31,6 @@ namespace TriciazAdventures
         public override void Draw(GameTime gameTime)
         {
             spriteBatch.Begin();
-            //version 4 of draw - supports cropping
 
             spriteBatch.Draw(tex, position1, srcRect, Color.White);
             spriteBatch.Draw(tex, position2, srcRect, Color.White);

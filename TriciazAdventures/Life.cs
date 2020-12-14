@@ -18,10 +18,10 @@ namespace TriciazAdventures
 
         private Vector2 initPosition;
         private Texture2D heart;
-        private const int INITIAL_LIFE = 1;
+        private const int INITIAL_LIFE = 5;
         private Collision collision;
         private Vector2 position;
-        private int currentLife = INITIAL_LIFE;
+        private int currentLife;
         private ActionScene actionScene;
         GameOverScene gameOverScene;
         int space;
@@ -37,13 +37,17 @@ namespace TriciazAdventures
             this.collision = collision;
             this.actionScene = actionScene;
             this.gameOverScene = gameOverScene;
+
+            currentLife = INITIAL_LIFE;
         }
 
         public override void Draw(GameTime gameTime)
         {
+            currentLife = INITIAL_LIFE - collision.ReduceLife;
+
             spriteBatch.Begin();
 
-            for (int i = 0; i < INITIAL_LIFE - collision.ReduceLife; i++)
+            for (int i = 0; i < currentLife; i++)
             {
                 space = heart.Width * i;
                 position.X = initPosition.X + space;
@@ -52,7 +56,6 @@ namespace TriciazAdventures
             }
             spriteBatch.End();
 
-            currentLife = INITIAL_LIFE - collision.ReduceLife;
 
             base.Draw(gameTime);
         }

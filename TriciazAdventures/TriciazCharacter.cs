@@ -29,10 +29,14 @@ namespace TriciazAdventures
         bool isJumping;
         KeyboardState ks;
 
-        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 triciazXSpeed, Vector2 triciazYSpeed, SoundEffect jumpSound)
-            : base(game, spriteBatch, tex, triciazXSpeed, ROW, COL, FRAMING_SPEED)
+        public TriciazCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 triciazXSpeed, Vector2 triciazYSpeed, SoundEffect jumpSound, Vector2 position)
+            : base(game, spriteBatch, tex, triciazXSpeed, ROW, COL, FRAMING_SPEED, position)
         {
             position = new Vector2(frameDimension.X, Shared.stage.Y - frameDimension.Y);
+
+            this.position.X = position.X - frameDimension.X;
+            this.position.Y = position.Y;
+
             this.triciazYSpeed = triciazYSpeed;
             startY = position.Y;
             isJumping = false;
