@@ -16,10 +16,7 @@ namespace TriciazAdventures
         private const int FRAMING_SPEED = 1;
         private const int MIN_XSPEED = 3;
         private const int MAX_XSPEED = 13;
-        //private const int MIN_DELAY = 0;
-        //private const int MAX_DELAY = 200;
         private int delay;
-        //private Vector2 position;
 
         int speed;
         Random random = new Random();
@@ -27,10 +24,7 @@ namespace TriciazAdventures
         public EnemyCharacter(Game game, SpriteBatch spriteBatch, Texture2D tex, Vector2 xspeed, int delay, Vector2 position, int rows, int cols)
             : base(game, spriteBatch, tex, xspeed, rows, cols, FRAMING_SPEED, position)
         {
-            //delay = random.Next(MIN_DELAY, MAX_DELAY);
             this.delay = delay;
-            //position = new Vector2(Shared.stage.X - frameDimension.X + delay, Shared.stage.Y - frameDimension.Y);
-
             this.position.X = position.X - frameDimension.X + delay;
             this.position.Y = position.Y - frameDimension.Y;
         }

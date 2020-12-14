@@ -42,7 +42,6 @@ namespace TriciazAdventures
 
         bool isSecondLevelOn = false;
 
-        //private string secondPhase = "Second Phase";
         public ActionScene(Game game, SpriteBatch spriteBatch, GameOverScene gameOverScene) : base(game)
         {
             this.spriteBatch = spriteBatch;
@@ -82,11 +81,11 @@ namespace TriciazAdventures
 
             Vector2 flyingBluebleXSpeed = new Vector2(10, 0);
             Vector2 flyingBlueblePosition = new Vector2(Shared.stage.X, Shared.stage.Y - 450);
-            flyingBlueble = new EnemyCharacter(game, spriteBatch, flyingBluebleTex, bluebleXSpeed, 2000, flyingBlueblePosition, 5, 3);
+            flyingBlueble = new EnemyCharacter(game, spriteBatch, flyingBluebleTex, bluebleXSpeed, 2100, flyingBlueblePosition, 5, 3);
 
             Vector2 trollXSpeed = new Vector2(4, 0);
             Vector2 trollPosition = new Vector2(Shared.stage.X, Shared.stage.Y + 5);
-            troll = new EnemyCharacter(game, spriteBatch, trollTex, trollXSpeed, 1700, trollPosition, 5, 5);
+            troll = new EnemyCharacter(game, spriteBatch, trollTex, trollXSpeed, 1600, trollPosition, 5, 5);
             enemiesCollision2.Add(flyingBlueble);
             enemiesCollision2.Add(troll);
 
@@ -147,14 +146,7 @@ namespace TriciazAdventures
         }
 
         public override void Draw(GameTime gameTime)
-        {
-            if (score.ScoreCounter > 3.5)
-            {
-                spriteBatch.Begin();
-                //spriteBatch.DrawString(font, "Second Phase", new Vector2(Shared.stage.X / 2, Shared.stage.Y / 2), Color.Black);
-                //spriteBatch.Draw(secondPhase, Vector2.Zero, Color.White);
-                spriteBatch.End();
-            }
+        {            
             base.Draw(gameTime);
         }
     }
